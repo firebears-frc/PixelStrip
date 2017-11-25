@@ -11,13 +11,12 @@ public:
   void draw(Adafruit_NeoPixel *strip);
   
   /** Color of the spinning pixel */
-  uint32_t _color = 0x000088;
+  uint32_t color = 0x000088;
   
   /** Milliseconds for the pixel to travel across all the pixels. */
-  unsigned long _time_delay;
+  unsigned long time_delay;
 
 
 };
 #endif
-
 
