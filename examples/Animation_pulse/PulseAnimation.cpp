@@ -2,7 +2,7 @@
 #include "PulseAnimation.h"
 
 /** Colors of the pulsing pixels. */
-uint32_t _color[] = {
+uint32_t colorList[] = {
   0x008800,
   0x404000,
 };
@@ -12,13 +12,13 @@ void PulseAnimation::reset(Adafruit_NeoPixel *strip) {
 }
 
 void PulseAnimation::draw(Adafruit_NeoPixel *strip) {
-  unsigned long t = millis() % _time_cycle;
-  int color_len = sizeof(_color) / sizeof(uint32_t);
+  unsigned long t = millis() % time_cycle;
+  int color_len = sizeof(colorList) / sizeof(uint32_t);
   for (int p = 0; p < strip->numPixels(); p++) {
     int color_num = p % color_len;
-    int time_shift = color_num * (_time_cycle / color_len);
-    int brightness = f((t + time_shift) % _time_cycle);
-    uint32_t c1 = _color[color_num];
+    int time_shift = color_num * (time_cycle / color_len);
+    int brightness = f((t + time_shift) % time_cycle);
+    uint32_t c1 = colorList[color_num];
     uint32_t c2 = fadeColor(c1, brightness);
     strip->setPixelColor(p, c2);
   }
@@ -31,7 +31,7 @@ void PulseAnimation::draw(Adafruit_NeoPixel *strip) {
  * The return value is a brightness value from 0 to 255.
  */
 int PulseAnimation::f(unsigned long t) {
-  float theta = 6.283 * t / _time_cycle;   // Angle in radians
+  float theta = 6.283 * t / time_cycle;   // Angle in radians
   float s = (sin(theta) + 1.0) / 2.0;     // Value from 0.0 to 1.0
   return s * 256;
 }
@@ -51,5 +51,4 @@ uint32_t PulseAnimation::fadeColor(uint32_t c, int brightness) {
   b = (uint8_t)( ((int)b * brightness / 256) );
   return ((uint32_t)r << 16) | ((uint32_t)g <<  8) | b;
 }
-
 
