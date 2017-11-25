@@ -9,6 +9,7 @@ class PulseAnimation : public Animation {
   public:
     void reset(Adafruit_NeoPixel *strip);
     void draw(Adafruit_NeoPixel *strip);
+    void setColor(int i, uint32_t c);
 
 
     /** Milliseconds for each pulse cycle.  */
