@@ -1,27 +1,24 @@
 #include <Adafruit_NeoPixel.h>
 #include "MyAnimation.h"
 
-unsigned long timeout;
 unsigned long wait = 500;
-int _color = 0x880000;
-int q = 0;
+unsigned long color = 0x880000;
+int state = 0;
 
 void MyAnimation::reset(Adafruit_NeoPixel *strip) {
   strip->begin();
-  timeout = millis() + wait;
-  Serial.begin(9600);
+  setTimeout(wait);
+  color = 0x880000;
 }
 
 void MyAnimation::draw(Adafruit_NeoPixel *strip) {
-  if (millis() > timeout) {
-    timeout = millis() + wait;
-    Serial.print(q); Serial.println(" !!!");
-    q + (q + 1) % 3;
-    int num = strip->numPixels();
-    for (int x = 0; x < num; x++) {
-      int c = ((x + q) % 3 == 0) ? _color : 0x000000;
-      strip->setPixelColor(x, c);
+  if (isTimedout()) {
+    strip->setPixelColor(0, (state%3==0) ? 0x008800 : 0x000000);
+    state = (state + 1) % 3;
+    for (int pixelNum = 0; pixelNum < strip->numPixels(); pixelNum++) {
+      unsigned long pixelColor = ((pixelNum + state) % 3 == 0) ? color : 0x000000;
+      strip->setPixelColor(pixelNum, pixelColor);
     }
+    setTimeout(wait);
   }
 }
-
