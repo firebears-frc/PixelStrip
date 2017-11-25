@@ -7,6 +7,10 @@ uint32_t colorList[] = {
   0x404000,
 };
 
+void PulseAnimation::setColor(int i, uint32_t c) {
+  colorList[i] = c;
+}
+
 void PulseAnimation::reset(Adafruit_NeoPixel *strip) {
   strip->begin();
 }
@@ -26,10 +30,10 @@ void PulseAnimation::draw(Adafruit_NeoPixel *strip) {
 
 
 /**
- * Return a brightness value as a function of time.
- * The input value is the number of milliseconds into the cycle, from zero to _time_cycle.
- * The return value is a brightness value from 0 to 255.
- */
+   Return a brightness value as a function of time.
+   The input value is the number of milliseconds into the cycle, from zero to _time_cycle.
+   The return value is a brightness value from 0 to 255.
+*/
 int PulseAnimation::f(unsigned long t) {
   float theta = 6.283 * t / time_cycle;   // Angle in radians
   float s = (sin(theta) + 1.0) / 2.0;     // Value from 0.0 to 1.0
@@ -38,10 +42,10 @@ int PulseAnimation::f(unsigned long t) {
 
 
 /**
- * Return a color that has been faded by the given brightness.
- * The brightness parameter is a number from 0 to 255.
- * The output is a new color.
- */
+   Return a color that has been faded by the given brightness.
+   The brightness parameter is a number from 0 to 255.
+   The output is a new color.
+*/
 uint32_t PulseAnimation::fadeColor(uint32_t c, int brightness) {
   uint8_t r = (uint8_t)(c >> 16);
   uint8_t g = (uint8_t)(c >>  8);
@@ -51,4 +55,3 @@ uint32_t PulseAnimation::fadeColor(uint32_t c, int brightness) {
   b = (uint8_t)( ((int)b * brightness / 256) );
   return ((uint32_t)r << 16) | ((uint32_t)g <<  8) | b;
 }
-
