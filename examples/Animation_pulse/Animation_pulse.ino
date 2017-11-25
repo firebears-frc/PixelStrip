@@ -3,10 +3,10 @@
 #include <Animation.h>
 #include "PulseAnimation.h"
 
-#define PIN 7
+#define PIN 1
 #define NUM_PIXELS 8
 
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRBW);
+PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 PulseAnimation *animation;
 
 void setup() {
