@@ -14,9 +14,8 @@ public:
   uint32_t color = 0x000088;
   
   /** Milliseconds for the pixel to travel across all the pixels. */
-  unsigned long time_delay;
+  unsigned long waitTime;
 
 
 };
 #endif
-

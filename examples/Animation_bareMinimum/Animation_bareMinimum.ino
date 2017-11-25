@@ -6,7 +6,7 @@
 #define PIN 7
 #define NUM_PIXELS 8
 
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRBW);
+PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 MyAnimation *animation;
 
 void setup() {

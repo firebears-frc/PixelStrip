@@ -2,3 +2,5 @@
 *.bak
 *.zip
 .DS_Store
+.project
+

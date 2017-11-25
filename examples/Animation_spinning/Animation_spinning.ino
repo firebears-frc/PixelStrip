@@ -13,7 +13,7 @@
  */
  
 SpinningAnimation *redAnimation, *greenAnimation;
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN);
+PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 int mode = 0;
 long timeout;
 

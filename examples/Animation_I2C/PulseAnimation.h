@@ -15,7 +15,7 @@ class PulseAnimation : public Animation {
 
 
     /** Milliseconds for each pulse cycle.  */
-    unsigned long timeCycle = 2000;
+    unsigned long time_cycle = 2000;
 
 
   private:
