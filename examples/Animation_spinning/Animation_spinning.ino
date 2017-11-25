@@ -3,7 +3,7 @@
 #include <Animation.h>
 #include "SpinningAnimation.h"
 
-#define PIN 7
+#define PIN 1
 #define NUM_PIXELS 8
 
 /**
@@ -13,15 +13,15 @@
  */
  
 SpinningAnimation *redAnimation, *greenAnimation;
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRBW);
+PixelStrip strip = PixelStrip(NUM_PIXELS, PIN);
 int mode = 0;
 long timeout;
 
 void setup() {
   redAnimation = new SpinningAnimation();
-  redAnimation->_color = 0x880000;
+  redAnimation->color = 0x880000;
   greenAnimation = new SpinningAnimation();
-  greenAnimation->_color = 0x008800;
+  greenAnimation->color = 0x008800;
   strip.setup();
   strip.setAnimation(redAnimation);
   timeout = millis() + 3000;
