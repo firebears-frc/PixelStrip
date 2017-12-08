@@ -4,39 +4,50 @@
 #include <Wire.h>
 #include "PulseAnimation.h"
 
-const int PIN = 7;
-const int NUM_PIXELS = 8;
 const int BRIGHTNESS = 128;
 const int I2C_ADDRESS = 4;
+const int MAX_ANIMATIONS = 3;
+const int MAX_PIXELSTRIPS = 1;
 
-PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
-PulseAnimation *animation1, *animation2, *animation3;
+PixelStrip *strip[MAX_PIXELSTRIPS];
+PulseAnimation *animation[MAX_ANIMATIONS];
 int wireTimeout = 0;
 
 /**
- * Change animations when I2C messages are received.
- */
+   Change animations when I2C messages are received.
+*/
 void setup() {
   Wire.begin(I2C_ADDRESS);
   Wire.onReceive(receiveEvent);
-  animation1 = new PulseAnimation();
-  animation2 = new PulseAnimation();
-  animation2->setColor(0, 0x0000ff);
-  animation2->setColor(1, 0x888888);
-  animation3 = new PulseAnimation(3);
-  animation3->setColor(0, 0x880000);
-  animation3->setColor(1, 0x444444);
-  animation3->setColor(2, 0x000088);
-  strip->setup();
-  strip->setAnimation(animation1);
-  strip->setBrightness(BRIGHTNESS);
+
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
+
+  // set up all Animations
+  animation[0] = new PulseAnimation();
+  animation[0] = new PulseAnimation();
+  animation[1] = new PulseAnimation();
+  animation[1]->setColor(0, 0x0000ff);
+  animation[1]->setColor(1, 0x888888);
+  animation[2] = new PulseAnimation(3);
+  animation[2]->setColor(0, 0x880000);
+  animation[2]->setColor(1, 0x444444);
+  animation[2]->setColor(2, 0x000088);
+
+  // set up all PixelStrips
+  strip[0] = new PixelStrip(8, 7, NEO_GRB);
+  for (int s = 0; s < MAX_PIXELSTRIPS; s++) {
+    strip[s]->setup();
+    strip[s]->setAnimation(animation[0]);
+    strip[s]->setBrightness(BRIGHTNESS);
+  }
 }
 
 void loop() {
-  strip->draw();
-  strip->show();
+  for (int s = 0; s < MAX_PIXELSTRIPS; s++) {
+    strip[s]->draw();
+    strip[s]->show();
+  }
   delay(10);
   if (wireTimeout > 0 && millis() > wireTimeout)  {
     digitalWrite(LED_BUILTIN, LOW);
@@ -44,21 +55,19 @@ void loop() {
   }
 }
 
+/**
+   Expects to receive two characters.
+   The first character specifies the pixel strip number.
+   The second character sets the animation number on that strip.
+*/
 void receiveEvent(int howMany) {
   while (Wire.available() > 0) {
-    int x = Wire.read();
-    switch (x) {
-      case 1 :
-        strip->setAnimation(animation1);
-        break;
-      case 2 :
-        strip->setAnimation(animation2);
-        break;
-      case 3 :
-        strip->setAnimation(animation3);
-        break;
-      default :
-        strip->setAnimation(0);
+    int s = Wire.read() - '0';
+    int a = Wire.read() - '0';
+    if (a >= 0 && a < MAX_ANIMATIONS) {
+      strip[s]->setAnimation(animation[a]);
+    } else {
+      strip[s]->setAnimation(0);
     }
     digitalWrite(LED_BUILTIN, HIGH);
     wireTimeout = millis() + 500;
