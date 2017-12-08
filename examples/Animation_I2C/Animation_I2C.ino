@@ -4,10 +4,10 @@
 #include <Wire.h>
 #include "PulseAnimation.h"
 
-const int BRIGHTNESS = 128;
-const int I2C_ADDRESS = 4;
 const int MAX_ANIMATIONS = 3;
 const int MAX_PIXELSTRIPS = 1;
+const int BRIGHTNESS = 128;
+const int I2C_ADDRESS = 4;
 
 PixelStrip *strip[MAX_PIXELSTRIPS];
 PulseAnimation *animation[MAX_ANIMATIONS];
@@ -19,7 +19,6 @@ int wireTimeout = 0;
 void setup() {
   Wire.begin(I2C_ADDRESS);
   Wire.onReceive(receiveEvent);
-
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
