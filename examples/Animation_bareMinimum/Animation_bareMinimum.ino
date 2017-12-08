@@ -3,20 +3,22 @@
 #include <Animation.h>
 #include "MyAnimation.h"
 
-#define PIN 7
-#define NUM_PIXELS 8
+const int PIN = 7;
+const int NUM_PIXELS = 8;
+const int BRIGHTNESS = 128;
 
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
+PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 MyAnimation *animation;
 
 void setup() {
   animation = new MyAnimation();
-  strip.setup();
-  strip.setAnimation(animation);
+  strip->setup();
+  strip->setBrightness(BRIGHTNESS);
+  strip->setAnimation(animation);
 }
 
 void loop() {
-  strip.draw();
-  strip.show();
+  strip->draw();
+  strip->show();
   delay(10);
 }

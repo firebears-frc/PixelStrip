@@ -3,8 +3,9 @@
 #include <Animation.h>
 #include "SpinningAnimation.h"
 
-#define PIN 1
-#define NUM_PIXELS 8
+const int PIN = 7;
+const int NUM_PIXELS = 8;
+const int BRIGHTNESS = 128;
 
 /**
  * Test NeoPixel program that allows animations to be plugged into 
@@ -13,7 +14,7 @@
  */
  
 SpinningAnimation *redAnimation, *greenAnimation;
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
+PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 int mode = 0;
 long timeout;
 
@@ -22,26 +23,27 @@ void setup() {
   redAnimation->color = 0x880000;
   greenAnimation = new SpinningAnimation();
   greenAnimation->color = 0x008800;
-  strip.setup();
-  strip.setAnimation(redAnimation);
+  strip->setup();
+  strip->setBrightness(BRIGHTNESS);
+  strip->setAnimation(redAnimation);
   timeout = millis() + 3000;
 }
 
 
 
 void loop() {
-  strip.draw();
-  strip.show();
+  strip->draw();
+  strip->show();
   delay(5);
 
   if (millis() > timeout) {
     mode = (mode + 1) % 3;
     if (mode == 1) {
-      strip.setAnimation(redAnimation);
+      strip->setAnimation(redAnimation);
     } else if (mode == 2) {
-      strip.setAnimation(greenAnimation);
+      strip->setAnimation(greenAnimation);
     } else {
-      strip.setAnimation(0);
+      strip->setAnimation(0);
     }
     timeout = millis() + 3000;
   }

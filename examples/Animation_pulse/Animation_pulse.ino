@@ -3,20 +3,22 @@
 #include <Animation.h>
 #include "PulseAnimation.h"
 
-#define PIN 1
-#define NUM_PIXELS 8
+const int PIN = 7;
+const int NUM_PIXELS = 8;
+const int BRIGHTNESS = 128;
 
-PixelStrip strip = PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
+PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 PulseAnimation *animation;
 
 void setup() {
   animation = new PulseAnimation();
-  strip.setup();
-  strip.setAnimation(animation);
+  strip->setup();
+  strip->setBrightness(BRIGHTNESS);
+  strip->setAnimation(animation);
 }
 
 void loop() {
-  strip.draw();
-  strip.show();
-  delay(5);
+  strip->draw();
+  strip->show();
+  delay(10);
 }
