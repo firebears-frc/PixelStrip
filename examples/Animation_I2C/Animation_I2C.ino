@@ -15,6 +15,7 @@ int wireTimeout = 0;
 
 /**
    Change animations when I2C messages are received.
+   When a message is received, the built-in LED will flash for a half second.
 */
 void setup() {
   Wire.begin(I2C_ADDRESS);
@@ -23,7 +24,6 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);
 
   // set up all Animations
-  animation[0] = new PulseAnimation();
   animation[0] = new PulseAnimation();
   animation[1] = new PulseAnimation();
   animation[1]->setColor(0, 0x0000ff);
@@ -34,12 +34,13 @@ void setup() {
   animation[2]->setColor(2, 0x000088);
 
   // set up all PixelStrips
-  strip[0] = new PixelStrip(8, 7, NEO_GRB);
   for (int s = 0; s < MAX_PIXELSTRIPS; s++) {
+    strip[s] = new PixelStrip(8, 7 + s, NEO_GRB);
     strip[s]->setup();
     strip[s]->setAnimation(animation[0]);
     strip[s]->setBrightness(BRIGHTNESS);
   }
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -70,5 +71,8 @@ void receiveEvent(int howMany) {
     }
     digitalWrite(LED_BUILTIN, HIGH);
     wireTimeout = millis() + 500;
+    Serial.print("receiveEvent(");
+    Serial.print(s); Serial.print(",");
+    Serial.print(a); Serial.println(")");
   }
 }
