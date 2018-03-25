@@ -1,6 +1,7 @@
-*~
 *.bak
-*.zip
+*.orig
+*~
+/build/
+sysProps.xml
+PixelStrip.zip
 .DS_Store
-.project
-
