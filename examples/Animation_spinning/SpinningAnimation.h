@@ -1,14 +1,14 @@
 #ifndef SpinningAnimation_h
 #define SpinningAnimation_h
-#include <Animation.h>
+#include <PixelStrip.h>
 
 /**
  * Animation class that causes a single pixel to move across the strip.
  */
 class SpinningAnimation : public Animation {
 public:
-  void reset(Adafruit_NeoPixel *strip);
-  void draw(Adafruit_NeoPixel *strip);
+  void reset(PixelStrip *strip);
+  void draw(PixelStrip *strip);
   
   /** Color of the spinning pixel */
   uint32_t color = 0x000088;

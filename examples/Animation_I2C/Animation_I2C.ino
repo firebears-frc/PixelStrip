@@ -1,6 +1,4 @@
-#include <Adafruit_NeoPixel.h>
 #include <PixelStrip.h>
-#include <Animation.h>
 #include <Wire.h>
 #include "PulseAnimation.h"
 
@@ -35,7 +33,7 @@ void setup() {
 
   // set up all PixelStrips
   for (int s = 0; s < MAX_PIXELSTRIPS; s++) {
-    strip[s] = new PixelStrip(8, 7 + s, NEO_GRB);
+    strip[s] = new PixelStrip(8, 7 + s);
     strip[s]->setup();
     strip[s]->setAnimation(animation[0]);
     strip[s]->setBrightness(BRIGHTNESS);

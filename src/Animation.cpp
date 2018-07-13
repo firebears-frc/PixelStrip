@@ -1,12 +1,10 @@
 #include "Animation.h"
-#include <Adafruit_NeoPixel.h>
 
-
-void Animation::reset(Adafruit_NeoPixel *strip) {
+void Animation::reset(PixelStrip *strip) {
   //
 }
 
-void Animation::draw(Adafruit_NeoPixel *strip) {
+void Animation::draw(PixelStrip *strip) {
   //
 }
 

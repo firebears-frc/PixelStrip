@@ -1,14 +1,13 @@
-#include <Adafruit_NeoPixel.h>
 #include "MyAnimation.h"
 
 int pixelState = 0;
 
-void MyAnimation::reset(Adafruit_NeoPixel *strip) {
+void MyAnimation::reset(PixelStrip *strip) {
   strip->begin();
   setTimeout(waitTime);
 }
 
-void MyAnimation::draw(Adafruit_NeoPixel *strip) {
+void MyAnimation::draw(PixelStrip *strip) {
   if (isTimedout()) {
     strip->setPixelColor(0, (pixelState%3==0) ? 0x008800 : 0x000000);
     pixelState = (pixelState + 1) % 3;

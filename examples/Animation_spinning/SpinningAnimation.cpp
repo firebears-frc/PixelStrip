@@ -1,18 +1,17 @@
-#include <Adafruit_NeoPixel.h>
 #include "SpinningAnimation.h"
 
 uint32_t black;
 int currentPixel;
 
-void SpinningAnimation::reset(Adafruit_NeoPixel *strip) {
-  black = strip->Color(0, 0, 0);
+void SpinningAnimation::reset(PixelStrip *strip) {
+  black = 0x000000;
   currentPixel = 0;
   waitTime = 1000.0 / strip->numPixels();
   setTimeout(waitTime);
   strip->clear();
 }
 
-void SpinningAnimation::draw(Adafruit_NeoPixel *strip) {
+void SpinningAnimation::draw(PixelStrip *strip) {
   if (isTimedout()) {
     strip->setPixelColor(currentPixel, black);
     currentPixel = (currentPixel + 1) % strip->numPixels();

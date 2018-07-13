@@ -1,6 +1,4 @@
-#include <Adafruit_NeoPixel.h>
 #include <PixelStrip.h>
-#include <Animation.h>
 #include "SpinningAnimation.h"
 
 const int PIN = 7;
@@ -14,7 +12,7 @@ const int BRIGHTNESS = 128;
  */
  
 SpinningAnimation *redAnimation, *greenAnimation;
-PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
+PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN);
 int mode = 0;
 long timeout;
 

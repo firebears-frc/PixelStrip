@@ -1,4 +1,3 @@
-#include <Adafruit_NeoPixel.h>
 #include "PulseAnimation.h"
 
 PulseAnimation::PulseAnimation() {
@@ -22,11 +21,11 @@ void PulseAnimation::setColor(int i, uint32_t c) {
   colorList[i] = c;
 }
 
-void PulseAnimation::reset(Adafruit_NeoPixel *strip) {
+void PulseAnimation::reset(PixelStrip *strip) {
   strip->begin();
 }
 
-void PulseAnimation::draw(Adafruit_NeoPixel *strip) {
+void PulseAnimation::draw(PixelStrip *strip) {
   unsigned long t = millis() % time_cycle;
  // int color_len = sizeof(colorList) / sizeof(uint32_t);
   for (int p = 0; p < strip->numPixels(); p++) {

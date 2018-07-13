@@ -1,12 +1,10 @@
-#include <Adafruit_NeoPixel.h>
 #include <PixelStrip.h>
-#include <Animation.h>
 
 const int PIN = 7;
 const int NUM_PIXELS = 8;
 const int BRIGHTNESS = 128;
 
-PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
+PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN);
 
 void setup() {
   strip->setup();

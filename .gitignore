@@ -2,6 +2,7 @@
 *.orig
 *~
 /build/
+/etc/
 sysProps.xml
 PixelStrip.zip
 .DS_Store

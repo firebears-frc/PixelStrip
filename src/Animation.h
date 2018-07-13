@@ -1,18 +1,21 @@
 #ifndef Animation_h
 #define Animation_h
-#include <Adafruit_NeoPixel.h>
+#include <FastLED.h>
+
+class PixelStrip;
 
 /**
  * Abstract parent class for other animation classes.
  */
 class Animation {
+  
 public:
-  virtual void reset(Adafruit_NeoPixel *strip);
-  virtual void draw(Adafruit_NeoPixel *strip);
-  virtual void setTimeout(unsigned long milliseconds);
-  virtual int isTimedout();
+  virtual void reset(PixelStrip *strip);
+  virtual void draw(PixelStrip *strip);
+  void setTimeout(unsigned long milliseconds);
+  int isTimedout();
+  
+private:
   unsigned long _timeout;
 };
 #endif
-
-

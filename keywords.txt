@@ -4,7 +4,6 @@
 # Class
 #######################################
 
-Adafruit_NeoPixel	KEYWORD1
 Animation 		KEYWORD1
 PixelStrip	 	KEYWORD1
 
@@ -17,7 +16,6 @@ setPin			KEYWORD2
 setBrightness	KEYWORD2
 numPixels		KEYWORD2
 getPixelColor	KEYWORD2
-Color			KEYWORD2
 setAnimation	KEYWORD2
 reset			KEYWORD2
 draw			KEYWORD2

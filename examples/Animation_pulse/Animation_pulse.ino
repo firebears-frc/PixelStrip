@@ -1,13 +1,11 @@
-#include <Adafruit_NeoPixel.h>
 #include <PixelStrip.h>
-#include <Animation.h>
 #include "PulseAnimation.h"
 
 const int PIN = 7;
 const int NUM_PIXELS = 8;
 const int BRIGHTNESS = 128;
 
-PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
+PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN);
 PulseAnimation *animation;
 
 void setup() {

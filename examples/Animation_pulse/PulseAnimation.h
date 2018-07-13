@@ -1,6 +1,6 @@
 #ifndef PulseAnimation_h
 #define PulseAnimation_h
-#include <Animation.h>
+#include "PixelStrip.h"
 
 /**
  *
@@ -9,8 +9,8 @@ class PulseAnimation : public Animation {
   public:
     PulseAnimation();
     PulseAnimation(int n);
-    void reset(Adafruit_NeoPixel *strip);
-    void draw(Adafruit_NeoPixel *strip);
+    void reset(PixelStrip *strip);
+    void draw(PixelStrip *strip);
     void setColor(int i, uint32_t c);
 
 
