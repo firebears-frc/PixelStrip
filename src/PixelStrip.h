@@ -11,10 +11,13 @@ class Animation;
 */
 class PixelStrip
 {
-    const uint16_t _numPixels;
+  const uint16_t _numPixels;
+  const uint16_t _offset;
+  const PixelStrip *_parent;
 
   public:
     PixelStrip(CLEDController *controller, uint16_t numPixels);
+    PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset);
     void begin(void);
     void show(void);
     uint32_t Color(uint8_t r, uint8_t g, uint8_t b);
