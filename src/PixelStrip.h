@@ -6,7 +6,7 @@ class Animation;
 
 /**
    Encapsulates FastLED, but adds methods for plugging in an
-   Animation to the strip.
+   Animation to a strip.
 */
 class PixelStrip
 {
@@ -37,15 +37,6 @@ class PixelStrip
     Animation *_animation;
     unsigned long _timeout;
     CRGB *_led;
-};
-
-class Animation {
-public:
-  virtual void reset(PixelStrip *strip);
-  virtual void draw(PixelStrip *strip);
-  void setTimeout(unsigned long milliseconds);
-  int isTimedout();
-  unsigned long _timeout;
 };
 #endif
 

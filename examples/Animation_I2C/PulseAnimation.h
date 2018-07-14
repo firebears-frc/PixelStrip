@@ -2,9 +2,6 @@
 #define PulseAnimation_h
 #include <PixelStrip.h>
 
-/**
- *
- */
 class PulseAnimation : public Animation {
   public:
     PulseAnimation();

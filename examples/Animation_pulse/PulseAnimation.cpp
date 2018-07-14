@@ -37,7 +37,6 @@ void PulseAnimation::draw(PixelStrip *strip) {
   }
 }
 
-
 /**
    Return a brightness value as a function of time.
    The input value is the number of milliseconds into the cycle, from zero to _time_cycle.
@@ -48,7 +47,6 @@ int PulseAnimation::f(unsigned long t) {
   float s = (sin(theta) + 1.0) / 2.0;     // Value from 0.0 to 1.0
   return s * 256;
 }
-
 
 /**
    Return a color that has been faded by the given brightness.

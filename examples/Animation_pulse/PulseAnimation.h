@@ -13,10 +13,8 @@ class PulseAnimation : public Animation {
     void draw(PixelStrip *strip);
     void setColor(int i, uint32_t c);
 
-
     /** Milliseconds for each pulse cycle.  */
     unsigned long timeCycle = 2000;
-
 
   private:
     int f(unsigned long t);

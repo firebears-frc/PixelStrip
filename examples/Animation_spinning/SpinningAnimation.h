@@ -15,7 +15,5 @@ public:
   
   /** Milliseconds for the pixel to travel across all the pixels. */
   unsigned long waitTime;
-
-
 };
 #endif

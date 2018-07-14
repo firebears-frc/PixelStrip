@@ -27,7 +27,6 @@ void PulseAnimation::reset(PixelStrip *strip) {
 
 void PulseAnimation::draw(PixelStrip *strip) {
   unsigned long t = millis() % time_cycle;
- // int color_len = sizeof(colorList) / sizeof(uint32_t);
   for (int p = 0; p < strip->numPixels(); p++) {
     int color_num = p % colorCount;
     int time_shift = color_num * (time_cycle / colorCount);
@@ -37,7 +36,6 @@ void PulseAnimation::draw(PixelStrip *strip) {
     strip->setPixelColor(p, c2);
   }
 }
-
 
 /**
    Return a brightness value as a function of time.
@@ -49,7 +47,6 @@ int PulseAnimation::f(unsigned long t) {
   float s = (sin(theta) + 1.0) / 2.0;     // Value from 0.0 to 1.0
   return s * 256;
 }
-
 
 /**
    Return a color that has been faded by the given brightness.
