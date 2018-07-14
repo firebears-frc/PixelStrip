@@ -1,6 +1,7 @@
 #ifndef PixelStrip_h
 #define PixelStrip_h
 #include <FastLED.h>
+#include <Animation.h>
 
 class Animation;
 

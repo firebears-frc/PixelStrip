@@ -15,7 +15,7 @@ void setup() {
   strip->setup();
   strip->setBrightness(BRIGHTNESS);
   strip->clear();
-  strip->setTimeout(500);
+  strip->setTimeout(1);
 }
 
 void loop() {

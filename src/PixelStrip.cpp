@@ -2,16 +2,18 @@
 
 PixelStrip::PixelStrip(uint16_t numPixels, const uint8_t pin) : _pin(pin), _numPixels(numPixels), _npType(0) {
   _led = new CRGB[numPixels];
-  _animation = 0;
-  FastLED.addLeds<NEOPIXEL, 7>(_led, _numPixels);
   clear();
+  _animation = 0;
+  static NEOPIXEL<7> controller;
+  FastLED.addLeds(&controller, _led, _numPixels, 0);
 }
 
 PixelStrip::PixelStrip(uint16_t numPixels, const uint8_t pin, uint8_t npType) : _pin(pin), _numPixels(numPixels), _npType(npType) {
   _led = new CRGB[numPixels];
-  _animation = 0;
-  FastLED.addLeds<NEOPIXEL, 7>(_led, _numPixels);
   clear();
+  _animation = 0;
+  static NEOPIXEL<7> controller;
+  FastLED.addLeds(&controller, _led, _numPixels, 0);
 }
 
 void PixelStrip::begin(void)  {
