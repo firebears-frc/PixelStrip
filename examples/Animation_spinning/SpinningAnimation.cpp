@@ -5,7 +5,7 @@ uint32_t black;
 int currentPixel;
 
 void SpinningAnimation::reset(Adafruit_NeoPixel *strip) {
-  black = strip->Color(0, 0, 0);
+  black = 0x000000;
   currentPixel = 0;
   waitTime = 1000.0 / strip->numPixels();
   setTimeout(waitTime);

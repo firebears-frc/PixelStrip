@@ -29,8 +29,6 @@ void setup() {
   timeout = millis() + 3000;
 }
 
-
-
 void loop() {
   strip->draw();
   strip->show();

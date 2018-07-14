@@ -17,7 +17,6 @@ class PulseAnimation : public Animation {
     /** Milliseconds for each pulse cycle.  */
     unsigned long timeCycle = 2000;
 
-
   private:
     int f(unsigned long t);
     uint32_t fadeColor(uint32_t c, int brightness);
