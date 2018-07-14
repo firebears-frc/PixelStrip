@@ -12,7 +12,7 @@ const int BRIGHTNESS = 128;
  */
  
 SpinningAnimation *redAnimation, *greenAnimation;
-PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN);
+PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), NUM_PIXELS);
 int mode = 0;
 long timeout;
 

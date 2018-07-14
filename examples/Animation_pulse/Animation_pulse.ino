@@ -5,7 +5,7 @@ const int PIN = 7;
 const int NUM_PIXELS = 8;
 const int BRIGHTNESS = 128;
 
-PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN);
+PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), NUM_PIXELS);
 PulseAnimation *animation;
 
 void setup() {

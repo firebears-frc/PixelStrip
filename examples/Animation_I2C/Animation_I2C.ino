@@ -32,8 +32,9 @@ void setup() {
   animation[2]->setColor(2, 0x000088);
 
   // set up all PixelStrips
+  CLEDController *controller[] = {new NEOPIXEL<7>};
   for (int s = 0; s < MAX_PIXELSTRIPS; s++) {
-    strip[s] = new PixelStrip(8, 7 + s);
+    strip[s] = new PixelStrip(controller[s], 8);
     strip[s]->setup();
     strip[s]->setAnimation(animation[0]);
     strip[s]->setBrightness(BRIGHTNESS);

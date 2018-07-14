@@ -1,19 +1,10 @@
 #include "PixelStrip.h"
 
-PixelStrip::PixelStrip(uint16_t numPixels, const uint8_t pin) : _pin(pin), _numPixels(numPixels), _npType(0) {
+PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels) : _numPixels(numPixels) {
   _led = new CRGB[numPixels];
   clear();
   _animation = 0;
-  static NEOPIXEL<7> controller;
-  FastLED.addLeds(&controller, _led, _numPixels, 0);
-}
-
-PixelStrip::PixelStrip(uint16_t numPixels, const uint8_t pin, uint8_t npType) : _pin(pin), _numPixels(numPixels), _npType(npType) {
-  _led = new CRGB[numPixels];
-  clear();
-  _animation = 0;
-  static NEOPIXEL<7> controller;
-  FastLED.addLeds(&controller, _led, _numPixels, 0);
+  FastLED.addLeds(controller, _led, _numPixels, 0);
 }
 
 void PixelStrip::begin(void)  {

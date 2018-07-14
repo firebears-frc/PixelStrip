@@ -3,7 +3,7 @@
 PulseAnimation::PulseAnimation() {
   colorCount = 2;
   colorList = (uint32_t*)malloc(colorCount * sizeof(uint32_t));
-  colorList[0] = 0x008800;
+  colorList[0] = 0x000088;
   colorList[1] = 0x404000;
 }
 
@@ -13,7 +13,7 @@ PulseAnimation::PulseAnimation(int n) {
   for (int i=0; i<colorCount; i++) {
     colorList[i] = 0x000000;
   }
-  colorList[0] = 0x008800;
+  colorList[0] = 0x000088;
   colorList[1] = 0x404000;
 }
 
