@@ -1,5 +1,13 @@
 #ifndef PixelStrip_h
 #define PixelStrip_h
+
+#ifdef ADAFRUIT_ITSYBITSY_M0
+  #define ARDUINO_SAMD_ZERO
+#endif
+#ifdef ADAFRUIT_TRINKET_M0
+  #define ARDUINO_SAMD_ZERO
+#endif
+
 #include <FastLED.h>
 #include <Animation.h>
 
@@ -13,7 +21,7 @@ class PixelStrip
 {
   const uint16_t _numPixels;
   const uint16_t _offset;
-  const PixelStrip *_parent;
+  PixelStrip *_parent;
 
   public:
     PixelStrip(CLEDController *controller, uint16_t numPixels);
