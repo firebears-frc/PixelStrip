@@ -3,7 +3,7 @@
 #include <Animation.h>
 #include "SpinningAnimation.h"
 
-const int PIN = 7;
+const int PIN = 4;
 const int NUM_PIXELS = 8;
 const int BRIGHTNESS = 128;
 
@@ -16,17 +16,16 @@ const int BRIGHTNESS = 128;
 SpinningAnimation *redAnimation, *greenAnimation;
 PixelStrip *strip = new PixelStrip(NUM_PIXELS, PIN, NEO_GRB);
 int mode = 0;
-long timeout;
 
 void setup() {
   redAnimation = new SpinningAnimation();
   redAnimation->color = 0x880000;
   greenAnimation = new SpinningAnimation();
-  greenAnimation->color = 0x008800;
+  greenAnimation->color = 0x000088;
   strip->setup();
   strip->setBrightness(BRIGHTNESS);
   strip->setAnimation(redAnimation);
-  timeout = millis() + 3000;
+  strip->setTimeout(1000);
 }
 
 void loop() {
@@ -34,7 +33,7 @@ void loop() {
   strip->show();
   delay(5);
 
-  if (millis() > timeout) {
+  if (strip->isTimedout()) {
     mode = (mode + 1) % 3;
     if (mode == 1) {
       strip->setAnimation(redAnimation);
@@ -43,6 +42,6 @@ void loop() {
     } else {
       strip->setAnimation(0);
     }
-    timeout = millis() + 3000;
+    strip->setTimeout(3000);
   }
 }

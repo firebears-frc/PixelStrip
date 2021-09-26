@@ -3,7 +3,7 @@
 #include <Animation.h>
 #include "PulseAnimation.h"
 
-const int PIN = 7;
+const int PIN = 4;
 const int NUM_PIXELS = 8;
 const int BRIGHTNESS = 128;
 
