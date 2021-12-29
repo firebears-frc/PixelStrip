@@ -8,12 +8,11 @@ else
     cp src/*.cpp build/PixelStrip
     cp src/*.h build/PixelStrip
     cp -r examples build/PixelStrip
-    cp keywords.txt bubuild/PixelStripild
+    cp keywords.txt build/PixelStrip
     cp README.md build/PixelStrip
     cp library.properties build/PixelStrip
     cd build
-	zip -r ../PixelStrip.zip PixelStrip
-	cd ..
+    zip -r ../PixelStrip.zip PixelStrip
+    cd ..
 fi
-
 
