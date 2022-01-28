@@ -24,12 +24,12 @@ void setup() {
   // set up all Animations
   animation[0] = new PulseAnimation();
   animation[1] = new PulseAnimation();
-  animation[1]->setColor(0, 0x0000ff);
-  animation[1]->setColor(1, 0x888888);
+  animation[1]->setColor(0, BLUE);
+  animation[1]->setColor(1, GRAY);
   animation[2] = new PulseAnimation(3);
-  animation[2]->setColor(0, 0x880000);
-  animation[2]->setColor(1, 0x444444);
-  animation[2]->setColor(2, 0x000088);
+  animation[2]->setColor(0, RED);
+  animation[2]->setColor(1, DIMGREY);
+  animation[2]->setColor(2, BLUE);
 
   // set up all PixelStrips
   CLEDController *controller[] = {new NEOPIXEL<7>};

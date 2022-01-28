@@ -10,7 +10,7 @@ class MyAnimation : public Animation {
     void reset(PixelStrip *strip);
     void draw(PixelStrip *strip);
     unsigned long waitTime = 500;
-    unsigned long color = 0x008800;
+    unsigned long color = DARKGREEN;
   private:
 };
 #endif

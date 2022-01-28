@@ -13,6 +13,6 @@ void setup() {
 
 void loop() {
   strip->clear();
-  strip->setPixelColor(0, 0x880000);
+  strip->setPixelColor(0, RED);
   strip->show();
 }

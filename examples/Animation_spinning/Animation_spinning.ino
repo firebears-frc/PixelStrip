@@ -18,9 +18,9 @@ long timeout;
 
 void setup() {
   redAnimation = new SpinningAnimation();
-  redAnimation->color = 0x880000;
+  redAnimation->color = RED;
   greenAnimation = new SpinningAnimation();
-  greenAnimation->color = 0x008800;
+  greenAnimation->color = GREEN;
   strip->setup();
   strip->setBrightness(BRIGHTNESS);
   strip->setAnimation(redAnimation);

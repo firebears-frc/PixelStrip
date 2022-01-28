@@ -20,7 +20,7 @@ void setup() {
 
 void loop() {
   if (strip->isTimedout()) {
-    uint32_t color = ((state++) % 2 == 0) ? 0xff0000 : 0x888888;
+    uint32_t color = ((state++) % 2 == 0) ? RED : GRAY;
     strip->setPixelColor(0, color);
     strip->show();
     strip->setTimeout(500);

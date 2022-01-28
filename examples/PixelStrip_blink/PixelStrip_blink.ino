@@ -12,7 +12,7 @@ void setup() {
 }
 
 void loop() {
-  strip->setPixelColor(0, 0xFF0000);
+  strip->setPixelColor(0, RED);
   strip->show();
   delay(1000);
   strip->clear();

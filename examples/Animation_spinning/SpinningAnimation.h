@@ -11,7 +11,7 @@ public:
   void draw(PixelStrip *strip);
   
   /** Color of the spinning pixel */
-  uint32_t color = 0x000088;
+  uint32_t color = BLUE;
   
   /** Milliseconds for the pixel to travel across all the pixels. */
   unsigned long waitTime;
