@@ -11,24 +11,37 @@ PixelStrip	 	KEYWORD1
 # Methods and Functions 
 #######################################	
 
-setPixelColor	KEYWORD2
-setPin			KEYWORD2
-setBrightness	KEYWORD2
-numPixels		KEYWORD2
-getPixelColor	KEYWORD2
-setAnimation	KEYWORD2
-reset			KEYWORD2
+begin           KEYWORD2
+clear           KEYWORD2
 draw			KEYWORD2
-animate			KEYWORD2
-getPixelCount	KEYWORD2
+draw            KEYWORD2
+isTimedout      KEYWORD2
+numPixels		KEYWORD2
+reset			KEYWORD2
+setAnimation	KEYWORD2
+setBrightness	KEYWORD2
+setPixelColor	KEYWORD2
+setTimeout      KEYWORD2
+setup           KEYWORD2
+show            KEYWORD2
+
 
 #######################################
 # Constants
 #######################################
  
-NEO_GRB			LITERAL1
-NEO_COLMASK		LITERAL1
-NEO_KHZ800		LITERAL1
-NEO_SPDMASK		LITERAL1
-NEO_RGB			LITERAL1
-NEO_KHZ400		LITERAL1
+BLACK			LITERAL1
+BLUE			LITERAL1
+BROWN		    LITERAL1
+CYAN		    LITERAL1
+GRAY			LITERAL1
+GREEN		    LITERAL1
+MAGENTA 		LITERAL1
+MAROON 		    LITERAL1
+ORANGE			LITERAL1
+ORANGERED		LITERAL1
+PINK		    LITERAL1
+PURPLE 		    LITERAL1
+RED		        LITERAL1
+WHITE 		    LITERAL1
+YELLOW		    LITERAL1

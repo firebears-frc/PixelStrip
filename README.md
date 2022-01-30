@@ -1,6 +1,8 @@
 # PixelStrip
 Arduino library for NeoPixel animations.  Extends FastLED library.
 
+## Sample Code
+
 ```
 #include <PixelStrip.h>
 
@@ -27,3 +29,7 @@ void loop() {
   }
 }
 ```
+
+## Arduino wiring
+
+![Uno setup](uno_setup.png)
