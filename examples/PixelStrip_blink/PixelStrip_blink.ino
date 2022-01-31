@@ -7,8 +7,8 @@ const int BRIGHTNESS = 128;
 PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), NUM_PIXELS);
 
 void setup() {
-  strip->setup();
   strip->setBrightness(BRIGHTNESS);
+  strip->setup();
 }
 
 void loop() {

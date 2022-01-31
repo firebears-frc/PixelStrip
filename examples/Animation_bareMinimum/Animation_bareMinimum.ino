@@ -10,9 +10,9 @@ MyAnimation *animation;
 
 void setup() {
   animation = new MyAnimation();
-  strip->setup();
   strip->setBrightness(BRIGHTNESS);
   strip->setAnimation(animation);
+  strip->setup();
 }
 
 void loop() {

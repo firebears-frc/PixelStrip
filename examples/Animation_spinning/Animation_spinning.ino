@@ -14,17 +14,17 @@ const int BRIGHTNESS = 128;
 SpinningAnimation *redAnimation, *greenAnimation;
 PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), NUM_PIXELS);
 int mode = 0;
-long timeout;
+unsigned long timeout;
 
 void setup() {
   redAnimation = new SpinningAnimation();
   redAnimation->color = RED;
   greenAnimation = new SpinningAnimation();
   greenAnimation->color = GREEN;
-  strip->setup();
   strip->setBrightness(BRIGHTNESS);
   strip->setAnimation(redAnimation);
   timeout = millis() + 3000;
+  strip->setup();
 }
 
 void loop() {

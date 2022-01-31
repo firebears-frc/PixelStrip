@@ -1,5 +1,5 @@
 # PixelStrip
-Arduino library for NeoPixel animations.  Extends FastLED library.
+Arduino library for [NeoPixel](https://learn.adafruit.com/adafruit-neopixel-uberguide/the-magic-of-neopixels) / WS2812B LED animations.  This library extends  [FastLED](https://fastled.io/).
 
 ## Sample Code
 
@@ -14,9 +14,9 @@ int state = 0;
 PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), NUM_PIXELS);
 
 void setup() {
-  strip->setup();
   strip->setBrightness(BRIGHTNESS);
   strip->clear();
+  strip->setup();
   strip->setTimeout(1);
 }
 
