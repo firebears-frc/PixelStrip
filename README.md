@@ -1,6 +1,12 @@
 # PixelStrip
 Arduino library for [NeoPixel](https://learn.adafruit.com/adafruit-neopixel-uberguide/the-magic-of-neopixels) / WS2812B LED animations.  This library extends  [FastLED](https://fastled.io/).
 
+## Installation
+The `PixelStrip.zip` file can be created by the `build.sh` script (on either Mac or Linux).  To install into your Arduino IDE:
+
+* Sketch > Include Library > Manage Libraries and then install the FastLED library.
+* Sketch > Include Library > Add ZIP Library and then add the `PixelStrip.zip` file.
+
 ## Sample Code
 
 ```
