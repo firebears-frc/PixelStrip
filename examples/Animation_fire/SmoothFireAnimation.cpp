@@ -5,7 +5,7 @@ void SmoothFireAnimation::reset(PixelStrip *strip) {
   if (strip->numPixels() > heatSize) {
     if (heatSize > 0) free(heat);
     heatSize = strip->numPixels();
-    heat = new float[heatSize] { 0 };
+    heat = new float[heatSize] { 0.0 };
   }
   lastDraw = millis();
 }
@@ -26,7 +26,7 @@ void SmoothFireAnimation::draw(PixelStrip *strip) {
     heat[i] += spreadAmount;
     heat[neighborIndex] -= spreadAmount;
     if (i <= sparkHeight && randomFloat() < sparkProbability * elapsedSeconds) {
-      heat[i] = 2.0;
+      heat[i] = sparkHeat;
     }
   }
 

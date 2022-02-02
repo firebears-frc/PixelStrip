@@ -9,8 +9,10 @@ class SmoothFireAnimation : public Animation {
   public:
     void reset(PixelStrip *strip);
     void draw(PixelStrip *strip);
-    float sparkProbability = 1.0;
+    float sparkProbability = 0.3;
+    int sparks = 3;
     int sparkHeight = 4;
+    float sparkHeat = 0.5;
     float cooling = 1.0;
     float spreadRate = 1.0;
     bool reversed = false;

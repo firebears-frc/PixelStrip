@@ -11,7 +11,8 @@ FireAnimation *animation;
 
 void setup() {
   animation = new FireAnimation();
-  animation->sparkHeight = NUM_PIXELS / 4;
+  animation->sparkHeight = NUM_PIXELS / 2;
+  animation->sparks = NUM_PIXELS / 24;
   strip->setBrightness(BRIGHTNESS);
   strip->setAnimation(animation);
   strip->setup();
