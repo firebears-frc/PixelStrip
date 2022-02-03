@@ -32,10 +32,10 @@ void blink(PixelStrip *strip, int n) {
     strip->setPixelColor(0, RED);
     strip->show();
     digitalWrite(LED_BUILTIN, HIGH);
-    delay(100);
+    delay(50);
     strip->clear();
     strip->show();
     digitalWrite(LED_BUILTIN, LOW);
-    delay(300);
+    delay(200);
   }
 }

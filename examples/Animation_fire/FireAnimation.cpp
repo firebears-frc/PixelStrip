@@ -52,13 +52,13 @@ void FireAnimation::draw(PixelStrip *strip) {
 
 uint32_t FireAnimation::heatColor(byte temperature) {
   uint8_t t192 = scale8_video(temperature, 191);
-  uint8_t heatramp = t192 & 0x3F;
-  heatramp <<= 2;
+  uint8_t heatramp = t192 & 0x3F;  // 0..63
+  heatramp <<= 2;                  // 0 .. 252
   if ( t192 & 0x80) {
     return ((uint32_t)255 << 16) | ((uint32_t)255 <<  8) | heatramp;
   } else if ( t192 & 0x40 ) {
     return ((uint32_t)255 << 16) | ((uint32_t)heatramp <<  8);
   } else {
-    return ((uint32_t)heatramp << 16) | ((uint32_t)heatramp <<  8);
+    return ((uint32_t)heatramp << 16);
   }
 }
