@@ -3,7 +3,7 @@
 #include "PixelStrip.h"
 
 /**
- *
+ * Pulse alternating pixels against a list of colors.
  */
 class PulseAnimation : public Animation {
   public:

@@ -12,5 +12,6 @@ class MyAnimation : public Animation {
     unsigned long waitTime = 500;
     uint32_t color = DARKGREEN;
   private:
+    int pixelState = 0;
 };
 #endif

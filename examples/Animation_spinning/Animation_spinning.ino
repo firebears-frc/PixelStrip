@@ -14,7 +14,6 @@ const int BRIGHTNESS = 128;
 SpinningAnimation *redAnimation, *greenAnimation;
 PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), NUM_PIXELS);
 int mode = 0;
-unsigned long timeout;
 
 void setup() {
   redAnimation = new SpinningAnimation();
@@ -23,16 +22,15 @@ void setup() {
   greenAnimation->color = GREEN;
   strip->setBrightness(BRIGHTNESS);
   strip->setAnimation(redAnimation);
-  timeout = millis() + 3000;
+  strip->setTimeout(1);
   strip->setup();
 }
 
 void loop() {
   strip->draw();
   strip->show();
-  delay(5);
 
-  if (millis() > timeout) {
+  if (strip->isTimedout()) {
     mode = (mode + 1) % 3;
     if (mode == 1) {
       strip->setAnimation(redAnimation);
@@ -41,6 +39,6 @@ void loop() {
     } else {
       strip->setAnimation(0);
     }
-    timeout = millis() + 3000;
+    strip->setTimeout(3000);
   }
 }

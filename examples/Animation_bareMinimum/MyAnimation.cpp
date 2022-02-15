@@ -1,7 +1,5 @@
 #include "MyAnimation.h"
 
-int pixelState = 0;
-
 void MyAnimation::reset(PixelStrip *strip) {
   strip->begin();
   setTimeout(waitTime);

@@ -1,7 +1,5 @@
 #include "SpinningAnimation.h"
 
-int currentPixel;
-
 void SpinningAnimation::reset(PixelStrip *strip) {
   currentPixel = 0;
   waitTime = 1000.0 / strip->numPixels();
