@@ -33,7 +33,7 @@ void PixelStrip::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint
 void PixelStrip::setPixelColor(uint16_t n, uint32_t c) {
   if (_parent) {
     _parent->setPixelColor(n + _offset, c);
-  } else if (n >= 0) {
+  } else if (n >= 0 && n < _numPixels) {
     _led[n] = c;
   }
 }
