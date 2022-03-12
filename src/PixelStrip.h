@@ -16,25 +16,30 @@ class Animation;
 
 /**
    Encapsulates FastLED, but adds methods for plugging in an
-   Animation to a strip.
+   Animation to an LED strip or matrix.
 */
 class PixelStrip
 {
   const uint16_t _numPixels;
+  const uint16_t _maxX;
+  const uint16_t _maxY;
   const uint16_t _offset;
   PixelStrip *_parent;
 
   public:
     PixelStrip(CLEDController *controller, uint16_t numPixels);
+    PixelStrip(CLEDController *controller, uint16_t maxX, uint16_t maxY);
     PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset);
+    void setWrap(boolean b);
     void begin(void);
     void show(void);
-    void setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b);
-    void setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint8_t w);
     void setPixelColor(uint16_t n, uint32_t c);
+    void setPixelColor(uint16_t x, uint16_t y, uint32_t c);
     void setBrightness(uint8_t b);
     void clear(void);
     uint16_t numPixels(void);
+    uint16_t maxX(void);
+    uint16_t maxY(void);
     void setup();
     void draw();
     void setAnimation(Animation *animation);
@@ -44,6 +49,7 @@ class PixelStrip
   private:
     Animation *_animation;
     unsigned long _timeout;
+    boolean _wrap;
     CRGB *_led;
 };
 

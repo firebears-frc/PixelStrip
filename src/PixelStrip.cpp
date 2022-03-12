@@ -1,18 +1,34 @@
 #include "PixelStrip.h"
 
 PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels) 
-    :  _numPixels(numPixels), _parent(0), _offset(0)
+    :  _numPixels(numPixels), _parent(0), _offset(0), _maxX(numPixels), _maxY(0)
 {
   _led = new CRGB[numPixels];
   clear();
   _animation = 0;
+  _wrap = false;
+  FastLED.addLeds(controller, _led, _numPixels, 0);
+}
+
+PixelStrip::PixelStrip(CLEDController *controller, uint16_t maxX, uint16_t maxY)
+    :  _numPixels(maxX * maxY), _parent(0), _offset(0), _maxX(maxX), _maxY(maxY)
+{
+  _led = new CRGB[_numPixels];
+  clear();
+  _animation = 0;
+  _wrap = false;
   FastLED.addLeds(controller, _led, _numPixels, 0);
 }
 
 PixelStrip::PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset) 
-    : _numPixels(numPixels), _parent(parent), _offset(offset)
+    : _numPixels(numPixels), _parent(parent), _offset(offset), _maxX(numPixels), _maxY(0)
 {
   _animation = 0;
+  _wrap = false;
+}
+
+void PixelStrip::setWrap(boolean b) {
+  _wrap = b;
 }
 
 void PixelStrip::begin(void)  {
@@ -22,20 +38,21 @@ void PixelStrip::show(void) {
   FastLED.show();
 }
 
-void PixelStrip::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b) {
-  setPixelColor(n, ((uint32_t)r << 16) | ((uint32_t)g <<  8) | b);
-}
-
-void PixelStrip::setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint8_t w) {
-  setPixelColor(n, ((uint32_t)w << 24) | ((uint32_t)r << 16) | ((uint32_t)g <<  8) | b);
-}
-
 void PixelStrip::setPixelColor(uint16_t n, uint32_t c) {
   if (_parent) {
     _parent->setPixelColor(n + _offset, c);
   } else if (n >= 0 && n < _numPixels) {
     _led[n] = c;
+  } else if (_wrap) {
+    uint16_t nn = n;
+    while (nn >= _numPixels) nn -= _numPixels;
+    while (nn < 0) nn += _numPixels;
+    _led[nn] = c;
   }
+}
+
+void PixelStrip::setPixelColor(uint16_t x, uint16_t y, uint32_t c) {
+  setPixelColor(x + y * _maxX, c);
 }
 
 void PixelStrip::setBrightness(uint8_t b) {
@@ -52,6 +69,13 @@ uint16_t PixelStrip::numPixels(void) {
   return _numPixels;
 }
 
+uint16_t PixelStrip::maxX(void) {
+  return _maxX;
+}
+
+uint16_t PixelStrip::maxY(void) {
+  return _maxY;
+}
 
 void PixelStrip::setAnimation(Animation *animation)  {
   _animation = animation;
