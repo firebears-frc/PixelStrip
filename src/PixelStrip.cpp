@@ -1,7 +1,7 @@
 #include "PixelStrip.h"
 
-PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels) 
-    :  _numPixels(numPixels), _parent(0), _offset(0), _maxX(numPixels), _maxY(0)
+PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels)
+  :  _numPixels(numPixels), _parent(0), _offset(0), _maxX(numPixels), _maxY(0), _options(ORTHOGONAL)
 {
   _led = new CRGB[numPixels];
   clear();
@@ -10,8 +10,8 @@ PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels)
   FastLED.addLeds(controller, _led, _numPixels, 0);
 }
 
-PixelStrip::PixelStrip(CLEDController *controller, uint16_t maxX, uint16_t maxY)
-    :  _numPixels(maxX * maxY), _parent(0), _offset(0), _maxX(maxX), _maxY(maxY)
+PixelStrip::PixelStrip(CLEDController *controller, uint16_t width, uint16_t height)
+  :  _numPixels(width * height), _parent(0), _offset(0), _maxX(width), _maxY(height), _options(ORTHOGONAL)
 {
   _led = new CRGB[_numPixels];
   clear();
@@ -20,8 +20,18 @@ PixelStrip::PixelStrip(CLEDController *controller, uint16_t maxX, uint16_t maxY)
   FastLED.addLeds(controller, _led, _numPixels, 0);
 }
 
-PixelStrip::PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset) 
-    : _numPixels(numPixels), _parent(parent), _offset(offset), _maxX(numPixels), _maxY(0)
+PixelStrip::PixelStrip(CLEDController *controller, uint16_t width, uint16_t height, uint32_t options)
+  :  _numPixels(width * height), _parent(0), _offset(0), _maxX(width), _maxY(height), _options(options)
+{
+  _led = new CRGB[_numPixels];
+  clear();
+  _animation = 0;
+  _wrap = false;
+  FastLED.addLeds(controller, _led, _numPixels, 0);
+}
+
+PixelStrip::PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset)
+  : _numPixels(numPixels), _parent(parent), _offset(offset), _maxX(numPixels), _maxY(0), _options(ORTHOGONAL)
 {
   _animation = 0;
   _wrap = false;
@@ -52,7 +62,11 @@ void PixelStrip::setPixelColor(uint16_t n, uint32_t c) {
 }
 
 void PixelStrip::setPixelColor(uint16_t x, uint16_t y, uint32_t c) {
-  setPixelColor(x + y * _maxX, c);
+  if ((_options & ZIGZAG) && (y % 2 == 1)) {
+    setPixelColor((_maxX - (x + 1)) + y * _maxX, c);
+  } else {
+    setPixelColor(x + y * _maxX, c);
+  }
 }
 
 void PixelStrip::setBrightness(uint8_t b) {

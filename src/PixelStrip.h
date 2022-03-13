@@ -24,11 +24,13 @@ class PixelStrip
   const uint16_t _maxX;
   const uint16_t _maxY;
   const uint16_t _offset;
+  const uint32_t _options;
   PixelStrip *_parent;
 
   public:
     PixelStrip(CLEDController *controller, uint16_t numPixels);
-    PixelStrip(CLEDController *controller, uint16_t maxX, uint16_t maxY);
+    PixelStrip(CLEDController *controller, uint16_t width, uint16_t height);
+    PixelStrip(CLEDController *controller, uint16_t width, uint16_t height, uint32_t options);
     PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset);
     void setWrap(boolean b);
     void begin(void);
@@ -53,6 +55,11 @@ class PixelStrip
     CRGB *_led;
 };
 
+// Matrix Options
+#define ORTHOGONAL 0x00000000
+#define ZIGZAG 0x00000001
+
+// Colors
 #define ALICEBLUE 0xF0F8FF
 #define AMETHYST 0x9966CC
 #define ANTIQUEWHITE 0xFAEBD7

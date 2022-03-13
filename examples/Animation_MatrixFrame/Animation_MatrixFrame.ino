@@ -3,7 +3,7 @@
 
 const int PIN = 6;
 const int MAX_X = 8;
-const int MAX_Y = 8;
+const int MAX_Y = 32;
 const int BRIGHTNESS = 64;
 
 PixelStrip *strip = new PixelStrip((new NEOPIXEL<PIN>), MAX_X, MAX_Y);
