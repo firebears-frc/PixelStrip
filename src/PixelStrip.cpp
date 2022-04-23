@@ -83,9 +83,17 @@ uint16_t PixelStrip::_translatePixel(uint16_t x, uint16_t y)
 {
   uint16_t xx = x;
   uint16_t yy = y;
+
+  if (_options & MATRIX_RIGHT)
+    xx = _maxX - (xx + 1);
+  if (_options & MATRIX_BOTTOM)
+    yy = _maxY - (yy + 1);
   if ((_options & MATRIX_ZIGZAG) && (yy % 2 == 1))
+    xx = _maxX - (xx + 1);
+
+  if (_options & MATRIX_COLUMN_MAJOR)
   {
-    return (_maxX - (xx + 1)) + yy * _maxX;
+    return xx * _maxY + yy;
   }
   else
   {
