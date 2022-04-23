@@ -39,6 +39,7 @@ class PixelStrip
     void setPixelColor(uint16_t x, uint16_t y, uint32_t c);
     void setBrightness(uint8_t b);
     void clear(void);
+    void fillScreen(uint32_t c);
     uint16_t numPixels(void);
     uint16_t maxX(void);
     uint16_t maxY(void);
@@ -53,11 +54,18 @@ class PixelStrip
     unsigned long _timeout;
     boolean _wrap;
     CRGB *_led;
+    uint16_t _translatePixel(uint16_t x, uint16_t y);
 };
 
 // Matrix Options
-#define ORTHOGONAL 0x00000000
-#define ZIGZAG 0x00000001
+#define MATRIX_TOP 0x00            ///< Pixel 0 is at top of matrix
+#define MATRIX_BOTTOM 0x01         ///< Pixel 0 is at bottom of matrix
+#define MATRIX_LEFT 0x00           ///< Pixel 0 is at left of matrix
+#define MATRIX_RIGHT 0x02          ///< Pixel 0 is at right of matrix
+#define MATRIX_ROW_MAJOR 0x00      ///< Matrix is row major (horizontal)
+#define MATRIX_COLUMN_MAJOR 0x04   ///< Matrix is column major (vertical)
+#define MATRIX_PROGRESSIVE 0x00    ///< Same pixel order across each line
+#define MATRIX_ZIGZAG 0x08         ///< Pixel order reverses between lines
 
 // Colors
 #define ALICEBLUE 0xF0F8FF

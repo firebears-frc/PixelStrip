@@ -1,7 +1,7 @@
 #include <PixelStrip.h>
 #include "FrameAnimation.h"
 
-const int PIN = 6;
+const int PIN = 7;
 const int MAX_X = 8;
 const int MAX_Y = 32;
 const int BRIGHTNESS = 64;
