@@ -83,22 +83,28 @@ uint16_t PixelStrip::_translatePixel(uint16_t x, uint16_t y)
 {
   uint16_t xx = x;
   uint16_t yy = y;
+  uint16_t t;
 
-  if (_options & MATRIX_RIGHT)
+  if ((_options & MATRIX_TOP) && (_options & MATRIX_RIGHT))  {
+    t = xx;
+    xx = yy;
+    yy = _maxY - (t + 1);
+  } else if ((_options & MATRIX_BOTTOM) && (_options & MATRIX_RIGHT)) {
     xx = _maxX - (xx + 1);
-  if (_options & MATRIX_BOTTOM)
     yy = _maxY - (yy + 1);
+  } else if ((_options & MATRIX_BOTTOM) && (_options & MATRIX_LEFT)) {
+    t = xx;
+    xx = _maxX - (yy + 1);
+    yy = t;
+  }
+
   if ((_options & MATRIX_ZIGZAG) && (yy % 2 == 1))
     xx = _maxX - (xx + 1);
 
   if (_options & MATRIX_COLUMN_MAJOR)
-  {
     return xx * _maxY + yy;
-  }
   else
-  {
     return xx + yy * _maxX;
-  }
 }
 
 void PixelStrip::setBrightness(uint8_t b)
