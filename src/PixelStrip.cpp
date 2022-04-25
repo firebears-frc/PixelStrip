@@ -1,7 +1,7 @@
 #include "PixelStrip.h"
 
 PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels)
-    : _numPixels(numPixels), _parent(0), _offset(0), _maxX(numPixels), _maxY(0), _options(MATRIX_PROGRESSIVE & MATRIX_ROW_MAJOR & MATRIX_TOP & MATRIX_LEFT)
+    : _numPixels(numPixels), _parent(0), _offset(0), _maxX(numPixels), _maxY(0), _options(MATRIX_PROGRESSIVE | MATRIX_ROW_MAJOR | MATRIX_TOP | MATRIX_LEFT)
 {
   _led = new CRGB[numPixels];
   clear();
@@ -11,7 +11,7 @@ PixelStrip::PixelStrip(CLEDController *controller, uint16_t numPixels)
 }
 
 PixelStrip::PixelStrip(CLEDController *controller, uint16_t width, uint16_t height)
-    : _numPixels(width * height), _parent(0), _offset(0), _maxX(width), _maxY(height), _options(MATRIX_PROGRESSIVE & MATRIX_ROW_MAJOR & MATRIX_TOP & MATRIX_LEFT)
+    : _numPixels(width * height), _parent(0), _offset(0), _maxX(width), _maxY(height), _options(MATRIX_PROGRESSIVE | MATRIX_ROW_MAJOR | MATRIX_TOP | MATRIX_LEFT)
 {
   _led = new CRGB[_numPixels];
   clear();
@@ -31,7 +31,7 @@ PixelStrip::PixelStrip(CLEDController *controller, uint16_t width, uint16_t heig
 }
 
 PixelStrip::PixelStrip(PixelStrip *parent, uint16_t numPixels, uint16_t offset)
-    : _numPixels(numPixels), _parent(parent), _offset(offset), _maxX(numPixels), _maxY(0), _options(MATRIX_PROGRESSIVE & MATRIX_ROW_MAJOR & MATRIX_TOP & MATRIX_LEFT)
+    : _numPixels(numPixels), _parent(parent), _offset(offset), _maxX(numPixels), _maxY(0), _options(MATRIX_PROGRESSIVE | MATRIX_ROW_MAJOR | MATRIX_TOP | MATRIX_LEFT)
 {
   _animation = 0;
   _wrap = false;
