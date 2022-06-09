@@ -6,3 +6,6 @@
 sysProps.xml
 PixelStrip.zip
 .DS_Store
+
+.idea/
+*.iml
